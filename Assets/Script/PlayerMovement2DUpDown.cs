@@ -29,6 +29,10 @@ public class PlayerMovement2DUpDown : MonoBehaviour
     private bool canShoot = true;
     public float shootCooldownDuration = 1f;
 
+    [Header("Collision Settings")]
+    public LayerMask collisionMask; // Define the layer mask for collision checking
+
+
     [Header("Audio")]
     // Placeholder for audio clips like dashSound, teleportSound, etc.
 
@@ -241,7 +245,14 @@ public class PlayerMovement2DUpDown : MonoBehaviour
 
     void MovePlayer()
     {
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        // Perform collision check to ignore collisions with walls
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, movement, moveSpeed * Time.fixedDeltaTime, collisionMask);
+
+        // If there's no collision with the wall layer, move the player
+        if (hit.collider == null || !hit.collider.CompareTag("Wall"))
+        {
+            rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+        }
     }
 
     void HandleCooldowns()
