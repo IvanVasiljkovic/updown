@@ -219,6 +219,19 @@ public class PlayerMovement2DUpDown : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
         Vector3 dashDestination = transform.position + direction * distance;
 
+        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, distance, collisionMask);
+
+        // Check for collisions with walls
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.collider.CompareTag("Wall"))
+            {
+                // Adjust dashDestination to stop before hitting the wall
+                dashDestination = hit.point;
+                break;
+            }
+        }
+
         float t = 0f;
         float dashDuration = 0.7f; // Adjust the duration of the dash
 

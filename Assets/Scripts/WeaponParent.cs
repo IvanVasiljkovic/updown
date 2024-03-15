@@ -47,12 +47,15 @@ public class WeaponParent : MonoBehaviour
 
     public void Attack()
     {
-        if (attackBlocked)
-            return;
-        animator.SetTrigger("Attack");
-        // Attack animation will trigger the damage dealing logic
-        attackBlocked = true;
-        StartCoroutine(DelayAttack());
+        if (!attackBlocked)
+        {
+            // Trigger the attack animation
+            animator.SetTrigger("Attack");
+
+            // Attack animation will trigger the damage dealing logic
+            attackBlocked = true;
+            StartCoroutine(DelayAttack());
+        }
     }
 
     private IEnumerator DelayAttack()
@@ -60,6 +63,7 @@ public class WeaponParent : MonoBehaviour
         yield return new WaitForSeconds(delay);
         attackBlocked = false;
     }
+
 
     // Method to deal damage when the attack animation plays
     public void DealDamage()

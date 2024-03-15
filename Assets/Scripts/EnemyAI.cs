@@ -5,6 +5,7 @@ public class EnemyAI : MonoBehaviour
 {
     public float maxHealth = 100f;
     private float currentHealth;
+    public GameObject FloatingTextPrefab;
 
 
     public float baseSpeed = 5f;
@@ -69,7 +70,20 @@ public class EnemyAI : MonoBehaviour
         {
             Die();
         }
+        if (FloatingTextPrefab)
+        {
+            ShowFloatingText(amount);
+        }
     }
+
+
+
+    void ShowFloatingText(float damageAmount)
+    {
+        var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
+        go.GetComponent<TextMesh>().text = damageAmount.ToString();
+    }
+
 
     public bool IsDead()
     {

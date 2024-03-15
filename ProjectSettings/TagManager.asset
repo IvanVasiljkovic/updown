@@ -5,11 +5,14 @@ TagManager:
   serializedVersion: 2
   tags:
   - Enemy
+  - Wall
+  - Room
+  - NoDashInHere
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - NoDashInHere
   - Water
   - UI
   - Enemy detect
