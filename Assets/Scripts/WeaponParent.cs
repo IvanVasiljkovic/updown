@@ -6,6 +6,14 @@ public class WeaponParent : MonoBehaviour
     public Animator animator;
     public float delay = 0.3f;
     private bool attackBlocked;
+    private int currentWeaponIndex = 0; // Index of the current weapon
+    public GameObject[] weapons; // Array of weapon game objects
+
+    private void Start()
+    {
+        // Ensure only the first weapon is active at the start
+        SetActiveWeapon(currentWeaponIndex);
+    }
 
     // Update is called once per frame
     void Update()
@@ -15,6 +23,16 @@ public class WeaponParent : MonoBehaviour
         {
             // Trigger the attack animation
             Attack();
+        }
+
+        // Check for weapon cycling input
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            CycleWeapons(1); // Cycle to the next weapon
+        }
+        else if (Input.GetAxis("Mouse ScrollWheel") < 0f || Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            CycleWeapons(-1); // Cycle to the previous weapon
         }
 
         // Get the position of the mouse on the screen
@@ -64,12 +82,42 @@ public class WeaponParent : MonoBehaviour
         attackBlocked = false;
     }
 
-
     // Method to deal damage when the attack animation plays
     public void DealDamage()
     {
         // Insert code here to deal damage to enemies when the attack animation plays
         // You can call methods from other scripts here or directly deal damage
         Debug.Log("Dealing damage!");
+    }
+
+    private void CycleWeapons(int direction)
+    {
+        // Update current weapon index based on direction
+        currentWeaponIndex += direction;
+
+        // Ensure index stays within bounds
+        if (currentWeaponIndex < 0)
+        {
+            currentWeaponIndex = weapons.Length - 1;
+        }
+        else if (currentWeaponIndex >= weapons.Length)
+        {
+            currentWeaponIndex = 0;
+        }
+
+        // Set the active weapon
+        SetActiveWeapon(currentWeaponIndex);
+    }
+
+    private void SetActiveWeapon(int index)
+    {
+        // Deactivate all weapons
+        foreach (GameObject weapon in weapons)
+        {
+            weapon.SetActive(false);
+        }
+
+        // Activate the selected weapon
+        weapons[index].SetActive(true);
     }
 }

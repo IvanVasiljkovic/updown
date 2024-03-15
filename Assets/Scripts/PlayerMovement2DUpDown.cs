@@ -21,13 +21,7 @@ public class PlayerMovement2DUpDown : MonoBehaviour
     public float speedBoostDuration = 5f;
     private bool isSpeedBoosted = false;
 
-    [Header("Shooting")]
-    public float bulletSpeed = 10f; // Define bullet speed here
-    public GameObject bulletPrefab;
-    public Transform firePoint;
-    private float shootCooldownTimer = 0f;
-    private bool canShoot = true;
-    public float shootCooldownDuration = 1f;
+    
 
     [Header("Collision Settings")]
     public LayerMask collisionMask; // Define the layer mask for collision checking
@@ -54,19 +48,12 @@ public class PlayerMovement2DUpDown : MonoBehaviour
     [SerializeField] private Transform weaponTransform;
     void Update()
     {
-        if (!canShoot)
-        {
-            shootCooldownTimer -= Time.deltaTime;
-            if (shootCooldownTimer <= 0)
-            {
-                canShoot = true;
-            }
-        }
+        
 
         HandleInput();
         HandleCooldowns();
         HandleWeaponsAndAbilities();
-        HandleShooting();
+        
 
         // Get mouse position in world coordinates
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -94,39 +81,9 @@ public class PlayerMovement2DUpDown : MonoBehaviour
         transform.localScale = new Vector3(1, 1, 1); // Do not flip the player sprite to face right
     }
 
-    void HandleShooting()
-    {
-        if (Input.GetMouseButtonDown(1)) // Right click
-        {
-            ShootBullet();
-        }
-    }
+    
 
-    void ShootBullet()
-    {
-        if (canShoot)
-        {
-            // Calculate the direction from the player to the mouse position
-            Vector3 direction = (Camera.main.ScreenToWorldPoint(Input.mousePosition) - firePoint.position).normalized;
-
-            // Instantiate a bullet at the fire point position and rotation
-            GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
-
-            // Calculate the rotation angle based on the direction
-            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-            // Set the rotation of the bullet to face towards the mouse direction
-            bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-            // Set the velocity of the bullet to make it travel towards the mouse direction
-            Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
-            bulletRB.velocity = direction * bulletSpeed; // Use bulletSpeed here
-
-            // Start the shoot cooldown
-            canShoot = false;
-            shootCooldownTimer = shootCooldownDuration;
-        }
-    }
+    
 
 
 

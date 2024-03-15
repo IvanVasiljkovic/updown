@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ using System.Collections.Generic;
 using UnityEngine;
 
 public enum RoomType
@@ -87,11 +87,31 @@ public class DungeonGenerator : MonoBehaviour
 
         if (rooms.Count > 1) // Not the first room
         {
-            newRoom.parent = rooms[rooms.Count - 2]; // Connect to previous room
+            Room previousRoom = rooms[rooms.Count - 2]; // Get the previous room
+
+            // Calculate the position of the new room's door relative to the previous room's door
+            Vector2Int doorPosition = new Vector2Int(
+                position.x - previousRoom.location.x,
+                position.y - previousRoom.location.y
+            );
+
+            // Set the new room's parent to the previous room
+            newRoom.parent = previousRoom;
+
+            // Add the door position to the new room's location to get the absolute position of the door
+            Vector2Int absoluteDoorPosition = new Vector2Int(
+                position.x + doorPosition.x,
+                position.y + doorPosition.y
+            );
+
+            // Add the absolute door position to occupied positions
+            occupiedPositions.Add(absoluteDoorPosition);
         }
 
+        // Add the new room's position to occupied positions
         occupiedPositions.Add(position);
     }
+
 
     private Vector2Int GetRandomPosition()
     {
