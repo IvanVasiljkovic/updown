@@ -12,12 +12,9 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Check if the arrow hits an enemy
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Wall"))
         {
-            // Assuming the enemy has a method TakeDamage(float amount)
-         
-            Destroy(gameObject); // Destroy the arrow upon hitting an enemy
+            Destroy(gameObject); // Destroy the arrow upon hitting a wall
         }
         // Optionally, you can check for other tags if you want the arrow to interact with more objects
     }
