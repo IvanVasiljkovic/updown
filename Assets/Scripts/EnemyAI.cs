@@ -1,12 +1,10 @@
 using UnityEngine;
-using System.Collections.Generic;
 
 public class EnemyAI : MonoBehaviour
 {
     public float maxHealth = 100f;
     private float currentHealth;
     public GameObject FloatingTextPrefab;
-
 
     public float baseSpeed = 5f;
     public float chaseSpeedMultiplier = 1.2f; // AI moves faster when chasing
@@ -32,6 +30,10 @@ public class EnemyAI : MonoBehaviour
     public float smoothTurnTime = 0.3f; // Time taken to smoothly transition between directions
     private float smoothTurnVelocity;
 
+    private Animator animator;
+    private bool isWalking = false;
+    private bool isStanding = false; // Tracks if the standing animation is playing
+
     private enum State { Wandering, Chasing, Searching }
 
     void Start()
@@ -40,27 +42,33 @@ public class EnemyAI : MonoBehaviour
         ChangeDirection();
         speed = baseSpeed;
         currentHealth = maxHealth;
+
+        animator = GetComponent<Animator>(); // Getting the Animator component
     }
 
     void Update()
     {
         CheckForPlayer();
 
-        switch (currentState)
+        // Only execute movement logic if not standing
+        if (!isStanding)
         {
-            case State.Wandering:
-                WanderingBehavior();
-                break;
-            case State.Chasing:
-                ChasingBehavior();
-                break;
-            case State.Searching:
-                SearchingBehavior();
-                break;
-        }
+            switch (currentState)
+            {
+                case State.Wandering:
+                    WanderingBehavior();
+                    break;
+                case State.Chasing:
+                    ChasingBehavior();
+                    break;
+                case State.Searching:
+                    SearchingBehavior();
+                    break;
+            }
 
-        AvoidCollisions();
-        SmoothMovement();
+            AvoidCollisions();
+            SmoothMovement();
+        }
     }
 
     public void TakeDamage(float amount)
@@ -76,14 +84,11 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-
-
     void ShowFloatingText(float damageAmount)
     {
         var go = Instantiate(FloatingTextPrefab, transform.position, Quaternion.identity, transform);
         go.GetComponent<TextMesh>().text = damageAmount.ToString();
     }
-
 
     public bool IsDead()
     {
@@ -104,6 +109,7 @@ public class EnemyAI : MonoBehaviour
             lastDecisionTime = Time.time;
         }
         speed = baseSpeed;
+        isWalking = true;
     }
 
     void ChasingBehavior()
@@ -114,6 +120,7 @@ public class EnemyAI : MonoBehaviour
             lastSeenPlayerTime = Time.time;
             movementDirection = (lastKnownPlayerPosition - (Vector2)transform.position).normalized;
             speed = baseSpeed * chaseSpeedMultiplier;
+            isWalking = true;
         }
         else if (Time.time - lastSeenPlayerTime > memoryTime)
         {
@@ -133,17 +140,46 @@ public class EnemyAI : MonoBehaviour
             lastDecisionTime = Time.time;
         }
         speed = baseSpeed;
+        isWalking = true;
     }
 
     void SmoothMovement()
     {
         smoothedMovementDirection = Vector2.Lerp(smoothedMovementDirection, movementDirection, smoothTurnTime);
         Move(smoothedMovementDirection.normalized * speed);
+
+        if (isStanding && !animator.GetCurrentAnimatorStateInfo(0).IsName("SlimeStanding"))
+        {
+            // Resume movement when standing animation is finished
+            isStanding = false;
+        }
     }
 
     void Move(Vector2 direction)
     {
-        transform.Translate(direction * Time.deltaTime, Space.World);
+        // Only move if not standing
+        if (!isStanding)
+        {
+            transform.Translate(direction * Time.deltaTime, Space.World);
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        // Detect when Slime standing animation is playing
+        if (other.CompareTag("SlimeStanding"))
+        {
+            isStanding = true;
+        }
+    }
+
+    void UpdateAnimations()
+    {
+        // Set isWalking to true if the current state is Wandering or Chasing
+        isWalking = currentState == State.Wandering || currentState == State.Chasing;
+
+        // Update animator parameters based on the current state
+        animator.SetBool("IsWalking", isWalking);
     }
 
     bool CanSeePlayer()
@@ -192,5 +228,17 @@ public class EnemyAI : MonoBehaviour
             newDirection = Random.insideUnitCircle.normalized;
         } while (Vector2.Dot(newDirection, movementDirection) > 0.5); // Avoid minor direction changes
         movementDirection = newDirection;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        // When enemy collides with something, stop walking
+        isWalking = false;
+    }
+
+    void OnCollisionExit2D(Collision2D collision)
+    {
+        // When enemy is no longer colliding with something, resume walking
+        isWalking = true;
     }
 }

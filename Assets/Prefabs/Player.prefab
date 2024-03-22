@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8353337430795861920}
   - component: {fileID: 7525710784287966611}
   - component: {fileID: 4618519328956650432}
+  - component: {fileID: 7330139541427099493}
+  - component: {fileID: 2210415533512167253}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -182,6 +184,36 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   weaponTransform: {fileID: 0}
+--- !u!114 &7330139541427099493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979391795275787449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d112a14c0cabe498eb7a4ff109de6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  currentHealth: 0
+  invulnerabilityTime: 2
+--- !u!114 &2210415533512167253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2979391795275787449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b603bdf729f8c71419e1ec7329721b09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerHealth: {fileID: 7330139541427099493}
+  heartIcons:
+  - {fileID: 0}
 --- !u!1 &8913022889925905120
 GameObject:
   m_ObjectHideFlags: 0
