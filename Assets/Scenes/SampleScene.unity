@@ -170,6 +170,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 1535262855}
   delay: 0.3
+  weapons:
+  - {fileID: 1535262852}
 --- !u!1 &53678227
 GameObject:
   m_ObjectHideFlags: 0
@@ -1269,7 +1271,7 @@ GameObject:
   - component: {fileID: 1097370131}
   - component: {fileID: 1097370130}
   - component: {fileID: 1097370129}
-  - component: {fileID: 1097370128}
+  - component: {fileID: 1097370133}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -1277,32 +1279,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1097370128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097370127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151762c41a3685c44a9b032757bd4350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashDistance: 15
-  dashCooldown: 2
-  teleportCooldown: 0.1
-  speedBoostMultiplier: 1.5
-  speedBoostDuration: 5
-  bulletSpeed: 50
-  bulletPrefab: {fileID: 4724882681547035273, guid: 8a8c5de83a1db81469b819eaa1a8247d, type: 3}
-  firePoint: {fileID: 1098893339}
-  shootCooldownDuration: 0.3
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 128
-  weaponTransform: {fileID: 53453174}
 --- !u!61 &1097370129
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1445,6 +1421,28 @@ Transform:
   - {fileID: 1225163488}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1097370133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1097370127}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fc8433ea306a34aa953bb0459a1fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  dashDistance: 5
+  dashCooldown: 2
+  teleportCooldown: 5
+  speedBoostMultiplier: 1.5
+  speedBoostDuration: 5
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  weaponTransform: {fileID: 53453174}
 --- !u!1 &1098893338
 GameObject:
   m_ObjectHideFlags: 0
@@ -1486,10 +1484,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1137016554}
   - component: {fileID: 1137016553}
-  - component: {fileID: 1137016552}
   - component: {fileID: 1137016551}
   - component: {fileID: 1137016550}
   - component: {fileID: 1137016549}
+  - component: {fileID: 1137016555}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -1604,36 +1602,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &1137016552
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1137016548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f04f675d1c1a364cbfa73fa061e18b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  baseSpeed: 3
-  chaseSpeedMultiplier: 1.2
-  maxRayDistance: 3
-  obstacleLayer:
-    serializedVersion: 2
-    m_Bits: 128
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  chaseDistance: 15
-  fieldOfViewAngle: 160
-  wallDetectionRays: 15
-  wallDetectionAngle: 180
-  wanderTime: 4
-  decisionInterval: 1
-  memoryTime: 10
-  smoothTurnTime: 0.3
 --- !u!212 &1137016553
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1701,6 +1669,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1137016555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1137016548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d1dc3097c3dbe5439cff1976b2036db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  FloatingTextPrefab: {fileID: 9204456476491544308, guid: 03b41e5bb2e50474dbe802cff0983bba, type: 3}
+  baseSpeed: 5
+  chaseSpeedMultiplier: 1.2
+  maxRayDistance: 3
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  chaseDistance: 15
+  fieldOfViewAngle: 160
+  wallDetectionRays: 15
+  wallDetectionAngle: 180
+  wanderTime: 4
+  decisionInterval: 1
+  memoryTime: 10
+  smoothTurnTime: 0.3
 --- !u!1 &1225163487
 GameObject:
   m_ObjectHideFlags: 0
@@ -2162,6 +2161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount: 50
   attackDuration: 0.5
+  attackCooldown: 0.8
 --- !u!1 &1589025424
 GameObject:
   m_ObjectHideFlags: 3
