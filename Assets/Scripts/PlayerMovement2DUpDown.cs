@@ -136,14 +136,12 @@ public class PlayerMovement2DUpDown : MonoBehaviour
             StartCoroutine(StartDashTimer());
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+        // Remove stopping coroutine when key is released
+
+        if (dashCooldownTimer <= 0 && Input.GetKeyDown(KeyCode.Space))
         {
-            StopCoroutine(StartDashTimer());
-            if (dashCooldownTimer <= 0)
-            {
-                StartCoroutine(movementScript.DashTowardsMouse(dashDistance));
-                dashCooldownTimer = dashCooldown;
-            }
+            StartCoroutine(movementScript.DashTowardsMouse(dashDistance));
+            dashCooldownTimer = dashCooldown;
         }
     }
 
@@ -176,25 +174,14 @@ public class PlayerMovement2DUpDown : MonoBehaviour
         Vector3 direction = (targetPosition - transform.position).normalized;
         Vector3 dashDestination = transform.position + direction * distance;
 
-        RaycastHit2D[] hits = Physics2D.RaycastAll(transform.position, direction, distance, collisionMask);
-
-        // Check for collisions with walls
-        foreach (RaycastHit2D hit in hits)
-        {
-            if (hit.collider.CompareTag("Wall"))
-            {
-                // Adjust dashDestination to stop before hitting the wall
-                dashDestination = hit.point;
-                break;
-            }
-        }
-
         float t = 0f;
         float dashDuration = 0.7f; // Adjust the duration of the dash
 
         while (t < dashDuration)
         {
             t += Time.deltaTime;
+
+            
 
             // Calculate the lerp factor using a curve for smooth acceleration and deceleration
             float lerpFactor = Mathf.SmoothStep(0f, 1f, t / dashDuration);
@@ -208,7 +195,7 @@ public class PlayerMovement2DUpDown : MonoBehaviour
             yield return null;
         }
 
-        // After the dash is completed, set dashDistance back to 15
+        // After the dash is completed, set dashDistance back to its default value
         dashDistance = 15f;
     }
 

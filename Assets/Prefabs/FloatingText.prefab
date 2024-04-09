@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 883910363597824622}
   - component: {fileID: 8849227600474634725}
+  - component: {fileID: -2711806495464455458}
   - component: {fileID: 2308963298729789470}
-  - component: {fileID: -3586067389675771657}
   m_Layer: 0
   m_Name: FloatingText
   m_TagString: Untagged
@@ -19,21 +19,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &883910363597824622
-Transform:
+--- !u!224 &883910363597824622
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204456476491544308}
-  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.127787, y: -0.19020231, z: -0.23058224}
+  m_LocalPosition: {x: 0, y: 0, z: -0.23058224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 18.127787, y: -0.19020231}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!23 &8849227600474634725
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -76,6 +80,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-2711806495464455458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9204456476491544308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71c7b9cf9e02e064f9c4d7098c63b3f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 1
+  fadeSpeed: 1
 --- !u!102 &2308963298729789470
 TextMesh:
   serializedVersion: 3
@@ -84,9 +102,9 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9204456476491544308}
-  m_Text: SomeText
+  m_Text: 9950
   m_OffsetZ: 0
-  m_CharacterSize: 1
+  m_CharacterSize: 0.4
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 0
@@ -98,17 +116,3 @@ TextMesh:
   m_Color:
     serializedVersion: 2
     rgba: 4278190335
---- !u!114 &-3586067389675771657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9204456476491544308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4aaef86e54a4ff14eae19ceae9c5a8cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyTime: 0.3
-  Offset: {x: 0, y: 3}

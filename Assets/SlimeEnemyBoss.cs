@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
-public class SlimeEnemy : MonoBehaviour
+public class SlimeEnemyBoss : MonoBehaviour
 {
 
-   
+
 
     public float moveSpeed = 3f; // Movement speed of the enemy
     public float detectionRange = 5f; // Range within which the enemy detects the player
@@ -50,7 +50,7 @@ public class SlimeEnemy : MonoBehaviour
         }
     }
 
-    
+
 
 
     void OnCollisionEnter2D(Collision2D collision)

@@ -43,27 +43,22 @@ public class Sword : MonoBehaviour
         damageDealt = false; // Reset the damageDealt flag when the attack ends
     }
 
+    // Collision detection with enemies
     void OnTriggerEnter2D(Collider2D other)
     {
-        // Check if the attack animation is playing and damage hasn't been dealt yet
         if (isAttacking && !damageDealt)
         {
             // Check if the collided object is an enemy
-            EnemyAI enemy = other.GetComponent<EnemyAI>();
-            if (enemy != null)
+            if (other.CompareTag("Enemy"))
             {
-                // Deal damage to the enemy
-                enemy.TakeDamage(damageAmount);
-                Debug.Log("Sword collided with the enemy and dealt " + damageAmount + " damage.");
-
-                // Check if the enemy is dead after taking damage
-                if (enemy.IsDead())
+                // Apply damage to the enemy
+                EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
                 {
-                    // You may want to perform additional actions here when the enemy is killed
-                    Debug.Log("Enemy Killed!");
+                    enemyHealth.TakeDamage((int)damageAmount);
+                    damageDealt = true; // Set the damageDealt flag to true to prevent multiple damage applications in the same attack
                 }
             }
-            damageDealt = true; // Set damageDealt to true to indicate damage has been dealt
         }
     }
 }

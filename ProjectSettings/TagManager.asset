@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Room
   - NoDashInHere
+  - Bullet
+  - Sword
   layers:
   - Default
   - TransparentFX
