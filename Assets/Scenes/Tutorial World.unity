@@ -3765,6 +3765,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a050b5db4a2cc542b400a42606a171d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1205478376 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2979391795275787449, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
+  m_PrefabInstance: {fileID: 1975798824}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1205478383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205478376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49fc8433ea306a34aa953bb0459a1fc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  dashDistance: 5
+  dashCooldown: 2
+  teleportCooldown: 5
+  speedBoostMultiplier: 1.5
+  speedBoostDuration: 5
+  collisionMask:
+    serializedVersion: 2
+    m_Bits: 0
+  weaponTransform: {fileID: 0}
 --- !u!4 &1217080489 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2005138292266407312, guid: 068c4612962163044a40ab53bae08e75, type: 3}
@@ -4583,11 +4610,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7821012426152479727, guid: fe1c56bf3c779cb46a0ebe3258494c81, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -107.2
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 7821012426152479727, guid: fe1c56bf3c779cb46a0ebe3258494c81, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 66.3
+      value: 66.5
       objectReference: {fileID: 0}
     - target: {fileID: 7821012426152479727, guid: fe1c56bf3c779cb46a0ebe3258494c81, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5125,33 +5152,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 068c4612962163044a40ab53bae08e75, type: 3}
---- !u!1 &1516888379 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2979391795275787449, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
-  m_PrefabInstance: {fileID: 1975798824}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1516888386
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1516888379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49fc8433ea306a34aa953bb0459a1fc9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashDistance: 5
-  dashCooldown: 2
-  teleportCooldown: 5
-  speedBoostMultiplier: 1.5
-  speedBoostDuration: 5
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  weaponTransform: {fileID: 0}
 --- !u!1001 &1530793333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6377,11 +6377,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1541206532459696112, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -107.2
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 1541206532459696112, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 66.3
+      value: 66.5
       objectReference: {fileID: 0}
     - target: {fileID: 1541206532459696112, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6514,7 +6514,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2979391795275787449, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1516888386}
+      addedObject: {fileID: 1205478383}
     - targetCorrespondingSourceObject: {fileID: 1792479056628729580, guid: dfb12fed4aae7064288454c3e119ff08, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1560531989}
