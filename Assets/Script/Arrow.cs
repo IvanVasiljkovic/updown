@@ -1,3 +1,4 @@
+using Unity.Collections;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour
@@ -16,6 +17,7 @@ public class Arrow : MonoBehaviour
         {
             Destroy(gameObject); // Destroy the arrow upon hitting a wall
         }
+
         // Optionally, you can check for other tags if you want the arrow to interact with more objects
     }
 }
