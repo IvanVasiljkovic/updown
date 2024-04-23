@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections; // Include the System.Collections namespace for IEnumerator
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,10 +11,16 @@ public class EnemyHealth : MonoBehaviour
     [Tooltip("Vertical offset for damage text spawn point")]
     public float damageTextSpawnOffset = 1.0f; // Exposed to the Inspector
 
+    // Reference to the enemy's renderer component
+    private Renderer enemyRenderer;
+
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthText();
+
+        // Get the Renderer component from the enemy (assuming it's a sprite renderer)
+        enemyRenderer = GetComponent<Renderer>();
     }
 
     public void TakeDamage(int damageAmount)
@@ -26,8 +33,11 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            ShowDamageText(damageAmount); // Pass the damageAmount
+            ShowDamageText(damageAmount); // Show damage text
             UpdateHealthText(); // Update the health text after taking damage
+
+            // Start the coroutine to flash red
+            StartCoroutine(FlashRed());
         }
     }
 
@@ -50,5 +60,17 @@ public class EnemyHealth : MonoBehaviour
     {
         // Update the TextMesh component with the current health
         healthTextMesh.text = currentHealth.ToString();
+    }
+
+    IEnumerator FlashRed()
+    {
+        // Change the enemy's color to red
+        enemyRenderer.material.color = Color.red;
+
+        // Wait for a short duration
+        yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
+
+        // Change the enemy's color back to normal (white or original color)
+        enemyRenderer.material.color = Color.white; // Change to the desired original color
     }
 }
