@@ -1,25 +1,23 @@
 using UnityEngine;
-using System.Collections; // Include the System.Collections namespace for IEnumerator
+using UnityEngine.UI;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    [SerializeField] private int currentHealth; // Expose currentHealth to the Inspector
+    [SerializeField] private int currentHealth;
     public GameObject damageTextPrefab;
-    public TextMesh healthTextMesh; // Reference to the TextMesh component
-
-    [Tooltip("Vertical offset for damage text spawn point")]
-    public float damageTextSpawnOffset = 1.0f; // Exposed to the Inspector
-
-    // Reference to the enemy's renderer component
+    public TextMesh healthTextMesh;
+    public Slider healthBar;
+    public float damageTextSpawnOffset = 1.0f;
     private Renderer enemyRenderer;
+    private Coroutine healthBarCoroutine;
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthText();
-
-        // Get the Renderer component from the enemy (assuming it's a sprite renderer)
+        UpdateHealthBar();
         enemyRenderer = GetComponent<Renderer>();
     }
 
@@ -33,44 +31,91 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            ShowDamageText(damageAmount); // Show damage text
-            UpdateHealthText(); // Update the health text after taking damage
+            if (healthBarCoroutine == null)
+            {
+                healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
+            }
+            else if (!IsCoroutineRunning(healthBarCoroutine))
+            {
+                healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
+            }
 
-            // Start the coroutine to flash red
+            ShowDamageText(damageAmount);
+            UpdateHealthText();
+            UpdateHealthBar();
             StartCoroutine(FlashRed());
         }
     }
 
+    bool IsCoroutineRunning(Coroutine coroutine)
+    {
+        return coroutine != null;
+    }
+
+
+
+
     void Die()
     {
-        // Implement death behavior here (e.g., play death animation, deactivate GameObject, etc.)
         Destroy(gameObject);
     }
 
     void ShowDamageText(int damageAmount)
     {
-        // Calculate spawn point above the enemy
         Vector3 spawnPoint = transform.position + Vector3.up * damageTextSpawnOffset;
-
         var go = Instantiate(damageTextPrefab, spawnPoint, Quaternion.identity);
-        go.GetComponent<TextMesh>().text = "" + damageAmount.ToString(); // Show the amount of health lost
+        go.GetComponent<TextMesh>().text = damageAmount.ToString();
     }
 
     void UpdateHealthText()
     {
-        // Update the TextMesh component with the current health
         healthTextMesh.text = currentHealth.ToString();
+    }
+
+    void UpdateHealthBar()
+    {
+        healthBar.value = (float)currentHealth / maxHealth;
     }
 
     IEnumerator FlashRed()
     {
-        // Change the enemy's color to red
         enemyRenderer.material.color = Color.red;
-
-        // Wait for a short duration
-        yield return new WaitForSeconds(0.5f); // Adjust the duration as needed
-
-        // Change the enemy's color back to normal (white or original color)
-        enemyRenderer.material.color = Color.white; // Change to the desired original color
+        yield return new WaitForSeconds(0.5f);
+        enemyRenderer.material.color = Color.white;
     }
+
+    IEnumerator ShowHealthBarForSeconds(float seconds)
+    {
+        healthBar.gameObject.SetActive(true);
+        float elapsedTime = 0f;
+        while (elapsedTime < seconds)
+        {
+            yield return null;
+            elapsedTime += Time.deltaTime;
+        }
+        FadeOutHealthBar();
+    }
+
+    void FadeOutHealthBar()
+    {
+        StartCoroutine(FadeOutHealthBarCoroutine());
+    }
+
+    IEnumerator FadeOutHealthBarCoroutine()
+    {
+        float fadeDuration = 1f;
+        float elapsedTime = 0f;
+        CanvasGroup canvasGroup = healthBar.GetComponent<CanvasGroup>();
+
+        while (elapsedTime < fadeDuration)
+        {
+            yield return null;
+            elapsedTime += Time.deltaTime;
+            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
+        }
+
+        canvasGroup.alpha = 0f; // Ensure alpha is set to 0 when fading is complete
+        healthBar.gameObject.SetActive(false);
+    }
+
 }

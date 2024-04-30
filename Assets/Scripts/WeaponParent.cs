@@ -35,6 +35,12 @@ public class WeaponParent : MonoBehaviour
             CycleWeapons(-1); // Cycle to the previous weapon
         }
 
+        // Check if the player wants to drop the current weapon
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            DropCurrentWeapon();
+        }
+
         // Get the position of the mouse on the screen
         Vector3 mousePosition = Input.mousePosition;
         // Set the distance of the weapon parent from the camera
@@ -120,4 +126,26 @@ public class WeaponParent : MonoBehaviour
         // Activate the selected weapon
         weapons[index].SetActive(true);
     }
+
+    private void DropCurrentWeapon()
+    {
+        // Ensure there's at least one weapon in the inventory
+        if (weapons.Length == 0)
+            return;
+
+        // Get the position to drop the weapon (could be player's position or some offset)
+        Vector3 dropPosition = transform.position; // You might want to adjust this based on your game's needs
+
+        // Instantiate the current weapon at the drop position
+        GameObject droppedWeapon = Instantiate(weapons[currentWeaponIndex], dropPosition, Quaternion.identity);
+
+        // Remove the dropped weapon from the player's inventory
+        weapons[currentWeaponIndex].SetActive(false); // Deactivate the dropped weapon
+        weapons[currentWeaponIndex] = null; // Remove the reference from the player's inventory
+
+        // Optionally, you can remove the dropped weapon from the player's inventory
+        // For example, if your inventory is managed elsewhere, call a method to remove it
+        // from the inventory system here.
+    }
+
 }
