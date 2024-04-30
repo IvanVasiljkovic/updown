@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1881137815949526718}
   - component: {fileID: 8353337430795861920}
   - component: {fileID: 7525710784287966611}
-  - component: {fileID: 4618519328956650432}
   - component: {fileID: 7330139541427099493}
   - component: {fileID: 2210415533512167253}
   m_Layer: 6
@@ -163,28 +162,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 2.2303166}
   m_EdgeRadius: 0
---- !u!114 &4618519328956650432
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2979391795275787449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 151762c41a3685c44a9b032757bd4350, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashDistance: 15
-  dashCooldown: 2
-  teleportCooldown: 0.1
-  speedBoostMultiplier: 1.5
-  speedBoostDuration: 5
-  collisionMask:
-    serializedVersion: 2
-    m_Bits: 128
-  weaponTransform: {fileID: 0}
 --- !u!114 &7330139541427099493
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -528,7 +505,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2987468799088745856, guid: 4df8a3ca818cd944fa05d5da2e402292, type: 3}
       propertyPath: damageAmount
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2987468799088745856, guid: 4df8a3ca818cd944fa05d5da2e402292, type: 3}
       propertyPath: attackCooldown
