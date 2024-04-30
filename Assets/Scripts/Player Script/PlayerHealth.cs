@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -27,7 +28,7 @@ public class PlayerHealth : MonoBehaviour
             // Check if the player has run out of hearts
             if (remainingHearts <= 0)
             {
-                Die(); // Call the Die function
+                Die(); // Call the Die function to load the game over scene
                 return;
             }
 
@@ -61,13 +62,12 @@ public class PlayerHealth : MonoBehaviour
         isInvulnerable = false; // Set invulnerable flag to false after the duration is over
     }
 
-    // Function to handle player death
+    // Function to handle player death and load game over scene
     void Die()
     {
-        // This is where you would handle player death, for example:
         Debug.Log("Player has died!");
-        Destroy(gameObject);
-        // You can add more functionality here such as respawning the player, restarting the level, etc.
+        // Load the game over scene here
+        SceneManager.LoadScene("GameOverScene"); // Replace "GameOverScene" with the actual name of your game over scene
     }
 
     // Function to calculate remaining hearts for UI display

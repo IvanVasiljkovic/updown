@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 6d0b8b73f22a0004cb9e08f2b00c95d5
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Dark dungeons.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   - enabled: 1
     path: Assets/Scenes/Tutorial World.unity
@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Boss.unity
     guid: 0265946aeefdbd046a4a74cdf750a118
+  - enabled: 1
+    path: Assets/GameOverScene.unity
+    guid: 7908da13174473045b651485c4bb1a68
   m_configObjects: {}
