@@ -645,10 +645,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 95281351569082139, guid: 96dcbd8426dbaa7439551a5e3462a8d7, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1826592674}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96dcbd8426dbaa7439551a5e3462a8d7, type: 3}
 --- !u!1 &1627381650
 GameObject:
@@ -978,7 +975,7 @@ MonoBehaviour:
     m_SelectedColor: {r: 0, g: 1, b: 0.21658397, a: 0}
     m_DisabledColor: {r: 0, g: 1, b: 0.1325705, a: 0}
     m_ColorMultiplier: 1
-    m_FadeDuration: 0
+    m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
     m_PressedSprite: {fileID: 0}
@@ -1041,18 +1038,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 95281351569082139, guid: 96dcbd8426dbaa7439551a5e3462a8d7, type: 3}
   m_PrefabInstance: {fileID: 1580302183}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1826592674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1826592669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e3886fef46fb074a8afb2d0637377b5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1898876574
 GameObject:
   m_ObjectHideFlags: 0
@@ -1248,6 +1233,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2060141301}
+  - component: {fileID: 2060141302}
   m_Layer: 0
   m_Name: Canvas Slider
   m_TagString: Untagged
@@ -1271,6 +1257,20 @@ Transform:
   - {fileID: 1799210861}
   m_Father: {fileID: 104908021}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2060141302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060141300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e3886fef46fb074a8afb2d0637377b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 1799210860}
+  fadeDuration: 1
 --- !u!1 &2120439531
 GameObject:
   m_ObjectHideFlags: 0
