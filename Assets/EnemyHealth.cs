@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
     public Slider healthBar;
     public float damageTextSpawnOffset = 1.0f;
     private Renderer enemyRenderer;
+    private bool isTakingDamage = false;
     private Coroutine healthBarCoroutine;
 
     void Start()
@@ -23,6 +24,14 @@ public class EnemyHealth : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        if (!isTakingDamage)
+        {
+            isTakingDamage = true;
+            if (healthBarCoroutine != null)
+                StopCoroutine(healthBarCoroutine);
+            healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
+        }
+
         currentHealth -= damageAmount;
 
         if (currentHealth <= 0)
@@ -31,29 +40,12 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            if (healthBarCoroutine == null)
-            {
-                healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
-            }
-            else if (!IsCoroutineRunning(healthBarCoroutine))
-            {
-                healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
-            }
-
             ShowDamageText(damageAmount);
             UpdateHealthText();
             UpdateHealthBar();
             StartCoroutine(FlashRed());
         }
     }
-
-    bool IsCoroutineRunning(Coroutine coroutine)
-    {
-        return coroutine != null;
-    }
-
-
-
 
     void Die()
     {
@@ -87,35 +79,8 @@ public class EnemyHealth : MonoBehaviour
     IEnumerator ShowHealthBarForSeconds(float seconds)
     {
         healthBar.gameObject.SetActive(true);
-        float elapsedTime = 0f;
-        while (elapsedTime < seconds)
-        {
-            yield return null;
-            elapsedTime += Time.deltaTime;
-        }
-        FadeOutHealthBar();
-    }
-
-    void FadeOutHealthBar()
-    {
-        StartCoroutine(FadeOutHealthBarCoroutine());
-    }
-
-    IEnumerator FadeOutHealthBarCoroutine()
-    {
-        float fadeDuration = 1f;
-        float elapsedTime = 0f;
-        CanvasGroup canvasGroup = healthBar.GetComponent<CanvasGroup>();
-
-        while (elapsedTime < fadeDuration)
-        {
-            yield return null;
-            elapsedTime += Time.deltaTime;
-            canvasGroup.alpha = Mathf.Lerp(1f, 0f, elapsedTime / fadeDuration);
-        }
-
-        canvasGroup.alpha = 0f; // Ensure alpha is set to 0 when fading is complete
+        yield return new WaitForSeconds(seconds);
         healthBar.gameObject.SetActive(false);
+        isTakingDamage = false;
     }
-
 }
