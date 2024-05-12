@@ -12,10 +12,21 @@ public class Arrow : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Wall"))
+        if (collision.CompareTag("Enemy")) // Assuming enemy has a tag "Enemy"
+        {
+            EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>(); // Get EnemyHealth component
+
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(Mathf.RoundToInt(damage)); // Deal damage to the enemy
+                Destroy(gameObject); // Destroy the arrow upon hitting an enemy
+            }
+        }
+        else if (collision.CompareTag("Wall"))
         {
             Destroy(gameObject); // Destroy the arrow upon hitting a wall
         }
+
         // Optionally, you can check for other tags if you want the arrow to interact with more objects
     }
 }

@@ -1,23 +1,37 @@
 using UnityEngine;
+using UnityEngine.UI;
+using System.Collections;
 
 public class EnemyHealth : MonoBehaviour
 {
     public int maxHealth = 100;
-    [SerializeField] private int currentHealth; // Expose currentHealth to the Inspector
+    [SerializeField] private int currentHealth;
     public GameObject damageTextPrefab;
-    public TextMesh healthTextMesh; // Reference to the TextMesh component
-
-    [Tooltip("Vertical offset for damage text spawn point")]
-    public float damageTextSpawnOffset = 1.0f; // Exposed to the Inspector
+    public TextMesh healthTextMesh;
+    public Slider healthBar;
+    public float damageTextSpawnOffset = 1.0f;
+    private Renderer enemyRenderer;
+    private bool isTakingDamage = false;
+    private Coroutine healthBarCoroutine;
 
     void Start()
     {
         currentHealth = maxHealth;
         UpdateHealthText();
+        UpdateHealthBar();
+        enemyRenderer = GetComponent<Renderer>();
     }
 
     public void TakeDamage(int damageAmount)
     {
+        if (!isTakingDamage)
+        {
+            isTakingDamage = true;
+            if (healthBarCoroutine != null)
+                StopCoroutine(healthBarCoroutine);
+            healthBarCoroutine = StartCoroutine(ShowHealthBarForSeconds(5f));
+        }
+
         currentHealth -= damageAmount;
 
         if (currentHealth <= 0)
@@ -26,29 +40,47 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            ShowDamageText(damageAmount); // Pass the damageAmount
-            UpdateHealthText(); // Update the health text after taking damage
+            ShowDamageText(damageAmount);
+            UpdateHealthText();
+            UpdateHealthBar();
+            StartCoroutine(FlashRed());
         }
     }
 
     void Die()
     {
-        // Implement death behavior here (e.g., play death animation, deactivate GameObject, etc.)
         Destroy(gameObject);
     }
 
     void ShowDamageText(int damageAmount)
     {
-        // Calculate spawn point above the enemy
         Vector3 spawnPoint = transform.position + Vector3.up * damageTextSpawnOffset;
-
         var go = Instantiate(damageTextPrefab, spawnPoint, Quaternion.identity);
-        go.GetComponent<TextMesh>().text = "" + damageAmount.ToString(); // Show the amount of health lost
+        go.GetComponent<TextMesh>().text = damageAmount.ToString();
     }
 
     void UpdateHealthText()
     {
-        // Update the TextMesh component with the current health
         healthTextMesh.text = currentHealth.ToString();
+    }
+
+    void UpdateHealthBar()
+    {
+        healthBar.value = (float)currentHealth / maxHealth;
+    }
+
+    IEnumerator FlashRed()
+    {
+        enemyRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(0.5f);
+        enemyRenderer.material.color = Color.white;
+    }
+
+    IEnumerator ShowHealthBarForSeconds(float seconds)
+    {
+        healthBar.gameObject.SetActive(true);
+        yield return new WaitForSeconds(seconds);
+        healthBar.gameObject.SetActive(false);
+        isTakingDamage = false;
     }
 }
