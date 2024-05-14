@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 52988c3e9e957d64d84df04c10c0bbab
+guid: 6026cb94baa6a094f9db9eb912a91c3c
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 10
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Dungeon tileset_0
+      name: knight 3 idle_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 80
-        width: 214
-        height: 112
+        x: 15
+        y: 3
+        width: 16
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9fd1eee668067344284e79593c7c28f8
-      internalID: 822270402
+      spriteID: 40e9c99f0ea1e7b42ba006925d20270c
+      internalID: 468987947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dungeon tileset_1
+      name: knight 3 idle_1
       rect:
         serializedVersion: 2
-        x: 209
-        y: 172
-        width: 14
-        height: 16
+        x: 56
+        y: 3
+        width: 17
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d3df9d2b19c67e4a85b71590bb0fcfc
-      internalID: 1598246837
+      spriteID: f810afdad47ee6742b3854eebc71cc58
+      internalID: -1034023553
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dungeon tileset_2
+      name: knight 3 idle_2
       rect:
         serializedVersion: 2
-        x: 212
-        y: 144
-        width: 92
-        height: 48
+        x: 97
+        y: 3
+        width: 18
+        height: 35
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a56ffbaba44a58d4e8b64d4ea7b3ccb3
-      internalID: 1457830276
+      spriteID: a5e3eac9bfc397744a6349c036f653b8
+      internalID: 2033313630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dungeon tileset_3
+      name: knight 3 idle_3
       rect:
         serializedVersion: 2
-        x: 320
-        y: 155
-        width: 15
-        height: 37
+        x: 139
+        y: 3
+        width: 18
+        height: 34
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,134 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 55ab43f51e810ad4190d38df509e077e
-      internalID: 2071390952
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_4
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 155
-        width: 15
-        height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a8155b8287d8b3642ba8903733097ce3
-      internalID: 1734134707
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_5
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 144
-        width: 15
-        height: 45
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c882709dee0fc7a42a6ac7b7798e2d47
-      internalID: 262199647
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_6
-      rect:
-        serializedVersion: 2
-        x: 368
-        y: 144
-        width: 15
-        height: 23
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b779cb0cbf5200f49967d6c21d1170fe
-      internalID: -1207625896
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_7
-      rect:
-        serializedVersion: 2
-        x: 241
-        y: 112
-        width: 15
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 40a982c51cf7489438f1105f356216f4
-      internalID: -1513643111
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_8
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 80
-        width: 32
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 52f2f877fe942454182ea9899b11e96a
-      internalID: -2109370510
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_9
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 240
-        height: 78
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 81444aa4f4127354b8544073b30bab36
-      internalID: 2028822843
+      spriteID: 48d2ea2f71ad8764c8fd05a43e372729
+      internalID: -608573524
       vertices: []
       indices: 
       edges: []
@@ -330,16 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Dungeon tileset_0: 822270402
-      Dungeon tileset_1: 1598246837
-      Dungeon tileset_2: 1457830276
-      Dungeon tileset_3: 2071390952
-      Dungeon tileset_4: 1734134707
-      Dungeon tileset_5: 262199647
-      Dungeon tileset_6: -1207625896
-      Dungeon tileset_7: -1513643111
-      Dungeon tileset_8: -2109370510
-      Dungeon tileset_9: 2028822843
+      knight 3 idle_0: 468987947
+      knight 3 idle_1: -1034023553
+      knight 3 idle_2: 2033313630
+      knight 3 idle_3: -608573524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
