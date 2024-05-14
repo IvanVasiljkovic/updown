@@ -3,21 +3,45 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    public Image iconImage; // Reference to the Image component where the item icon will be displayed
+    public Image icon; // UI Image to display the item icon
+    public Items item; // The item currently in this slot
+    public bool isSelected = false; // Is this slot selected?
 
-    private InventoryItem currentItem; // The item currently represented by this slot
-
-    public void AddItem(InventoryItem item)
+    // Add an item to the slot
+    public void AddItem(Items newItem)
     {
-        currentItem = item;
-        iconImage.sprite = item.icon; // Set the sprite of the iconImage to the item's icon
-        iconImage.enabled = true; // Ensure the icon is visible
+        item = newItem;
+        if (item != null && icon != null)
+        {
+            icon.sprite = item.icon;
+            icon.enabled = true;
+        }
     }
 
+    // Clear the slot
     public void ClearSlot()
     {
-        currentItem = null;
-        iconImage.sprite = null; // Clear the sprite
-        iconImage.enabled = false; // Hide the icon
+        item = null;
+        if (icon != null)
+        {
+            icon.sprite = null;
+            icon.enabled = false;
+        }
+    }
+
+    // Select the slot
+    public void SelectSlot()
+    {
+        isSelected = true;
+        // Update the UI to show this slot is selected (e.g., change the color or add an outline)
+        icon.color = Color.yellow; // Example highlight
+    }
+
+    // Deselect the slot
+    public void DeselectSlot()
+    {
+        isSelected = false;
+        // Update the UI to show this slot is not selected
+        icon.color = Color.white; // Default color
     }
 }

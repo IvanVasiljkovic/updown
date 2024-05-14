@@ -51,6 +51,53 @@ MonoBehaviour:
   weapons:
   - {fileID: 226853924542842274}
   - {fileID: 6004658086307757146}
+--- !u!1 &2812917926260950184
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5012681997244396783}
+  - component: {fileID: 6598845554107181420}
+  m_Layer: 6
+  m_Name: ItemPickingUp
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5012681997244396783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812917926260950184}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 607241048098595579}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6598845554107181420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812917926260950184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a19bc4d6c22a44fa6070b2a94b966b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemName: 
+  icon: {fileID: 0}
+  quantity: 1
 --- !u!1 &8521752926018185075
 GameObject:
   m_ObjectHideFlags: 0
@@ -66,6 +113,7 @@ GameObject:
   - component: {fileID: 230769485817730609}
   - component: {fileID: 3766184907781124364}
   - component: {fileID: 3407531565162150881}
+  - component: {fileID: 7359892835943311626}
   m_Layer: 6
   m_Name: MainPlayer
   m_TagString: Player
@@ -88,6 +136,7 @@ Transform:
   m_Children:
   - {fileID: 611719872979813798}
   - {fileID: 5126695492616782426}
+  - {fileID: 5012681997244396783}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8688889601385090384
@@ -270,6 +319,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   weaponTransform: {fileID: 0}
+--- !u!114 &7359892835943311626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8521752926018185075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b39a91e3ad6a8e439eba13631730e24, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1455308366400020465
 PrefabInstance:
   m_ObjectHideFlags: 0
