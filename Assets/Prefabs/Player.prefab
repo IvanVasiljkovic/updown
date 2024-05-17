@@ -586,7 +586,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2987468799088745856, guid: 4df8a3ca818cd944fa05d5da2e402292, type: 3}
       propertyPath: damageAmount
-      value: 10
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2987468799088745856, guid: 4df8a3ca818cd944fa05d5da2e402292, type: 3}
       propertyPath: attackCooldown
