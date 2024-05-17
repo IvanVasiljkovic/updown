@@ -56,12 +56,20 @@ public class Inventory : MonoBehaviour
             items.Add(newItem);
         }
 
-        UpdateInventoryUI();
+        UpdateInventoryUI(); // Call this to update the UI after adding the item
     }
+
 
     private void UpdateInventoryUI()
     {
         // Implement logic to update your UI with the current inventory state
         // For example, you can use events, UI controllers, or other methods
+    }
+
+    // Call this method when the player picks up an item in the game world
+    public void PickUpItem(string itemName, Sprite icon, int quantity)
+    {
+        AddItem(itemName, icon, quantity);
+        // Here you can add additional logic, like removing the item from the game world
     }
 }
