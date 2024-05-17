@@ -3,6 +3,9 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
+    public enum SlotType { Inventory, Hotbar }
+    public SlotType slotType;
+
     public Image icon; // UI Image to display the item icon
     public Items item; // The item currently in this slot
     public bool isSelected = false; // Is this slot selected?
@@ -15,6 +18,10 @@ public class InventorySlot : MonoBehaviour
         {
             icon.sprite = item.icon;
             icon.enabled = true;
+        }
+        else
+        {
+            ClearSlot();
         }
     }
 
